@@ -1,14 +1,16 @@
 from flask import Flask, render_template, request
 import requests
-import json
+
+# enter in command line 'flask run'
+# look up this url: http://127.0.0.1:5000/
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/") #default temp
 def index():
     return render_template('index.html')
 
-@app.route("/search", methods=['GET', 'POST'])
+@app.route("/search", methods=['GET', 'POST']) #format, fetch then add to html
 def search():
     ingredients = request.form['ingredients']
     ingredients = ingredients.split(',')
