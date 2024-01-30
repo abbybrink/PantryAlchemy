@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #recipes {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Recipe Finder</h1>
+    <form action="/search" method="post">
+        <input type="text" id="ingredients" name="ingredients" placeholder="Enter ingredients (comma separated)">
+        <button id="findRecipesButton">Find Recipes</button>
+
+        <div id="recipes">
+            {% for recipe in recipes %}
+                <div>
+                    <h3>{{ recipe['title'] }}</h3>
+                    <img src="{{ recipe['image'] }}" style="width:100px;"></img>
+                    <br>
+                </div>
+            {% endfor %}
+        </div>
+    </form>
+
+</body>
+</html>

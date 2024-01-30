@@ -39,3 +39,5 @@ document.getElementById('findRecipesButton').addEventListener('click', async () 
         document.getElementById('recipes').innerHTML = '<p>No recipes found.</p>';
     }
 });
+
+<img src="{{ recipe.image() }}" alt="{{ recipe.title }}" style="width:100px;"></img>
