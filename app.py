@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
 import requests
+from elasticsearch import Elasticsearch
+
 
 # enter in command line 'flask run'
 # look up this url: http://127.0.0.1:5000/
@@ -9,6 +11,8 @@ app = Flask(__name__)
 @app.route("/") #default temp
 def index():
     return render_template('index.html')
+
+
 
 @app.route("/search", methods=['GET', 'POST']) #format, fetch then add to html
 def search():
@@ -26,5 +30,3 @@ def search():
         return render_template('index.html', recipes=recipes)
     else:
         return render_template('index.html')
-
-
