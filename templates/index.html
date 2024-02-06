@@ -17,7 +17,7 @@
         <div id="recipes">
             {% for recipe in recipes %}
                 <div>
-                    <h3>{{ recipe['title'] }}</h3>
+                    <h3><a href="/recipe/{{ recipe['id'] }}">{{ recipe['title'] }}</a></h3>
                     <img src="{{ recipe['image'] }}" style="width:100px;"></img>
                     <br>
                 </div>
