@@ -14,7 +14,7 @@ def search():
     ingredients = ingredients.split(',')
     apiKey = '96ef38777c94480b8b5e59393bac8bca'
     url = 'https://api.spoonacular.com/recipes/findByIngredients'
-    params = {'ingredients': ingredients, 
+    params = {'ingredients': ingredients,
               'number': 5,
               'apiKey': apiKey
               }
@@ -33,3 +33,12 @@ def recipe(recipe_id):
     recipe_details = requests.get(url=url, params=params)
     recipe_details = recipe_details.json()
     return render_template('recipe.html', recipe=recipe_details)
+
+@app.route("/pantry")  # Route for the Pantry page
+def pantry():
+    return render_template('pantry.html')
+
+
+@app.route("/account")  # Route for the Pantry page
+def account():
+    return render_template('account.html')
