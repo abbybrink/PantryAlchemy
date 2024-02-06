@@ -20,7 +20,7 @@ form {
    border-radius: 8px;
    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
    max-width: 500px;
-   margin: 0 auto;
+   margin: 20px auto;
 }
 
 input[type="text"] {
@@ -75,4 +75,34 @@ button:hover {
 #recipes img {
    max-width: 100%;
    border-radius: 4px;
+}
+.taskbar {
+   background-color: #283618;
+   overflow: hidden;
+ }
+
+ .taskbar ul {
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   overflow: hidden;
+ }
+
+ .taskbar li {
+   float: left;
+ }
+
+ .taskbar li a {
+   display: block;
+   color: #fefae0;
+   text-align: center;
+   padding: 14px 16px;
+   text-decoration: none;
+ }
+
+ .taskbar li a:hover {
+   background-color: #bc6c25;
+ }
+ .taskbar .right {
+   float: right;
 }
