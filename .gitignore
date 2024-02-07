@@ -1,0 +1,4 @@
+.env
+
+#ignore elasticsearch certificate
+http_ca.crt
