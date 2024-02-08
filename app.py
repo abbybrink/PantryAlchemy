@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import requests
-from elasticsearch import Elasticsearch
+#from elasticsearch import Elasticsearch
 
 app = Flask(__name__)
 
