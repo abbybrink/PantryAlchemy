@@ -99,7 +99,10 @@ button:hover {
    padding: 14px 16px;
    text-decoration: none;
  }
+.light-color{
+   color: #fefae0;
 
+}
  .taskbar li a:hover {
    background-color: #bc6c25;
  }
