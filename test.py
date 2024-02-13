@@ -22,7 +22,7 @@ else:
     print(f'Error: {response.status_code} - {response.text}')
 
 #Create the elasticsearch cluster
-es = Elasticsearch('https://localhost:9200', ca_certs='http_ca.crt', basic_auth=("elastic", "123456"))
+es = Elasticsearch('https://localhost:9200', ca_certs='http_ca.crt', basic_auth=("elastic", "=Q0LSPrqauirlURpWZHO"))
 
 #Read the json file and add a "_index" attribute to each document
 docs = list()
