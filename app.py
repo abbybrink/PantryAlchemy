@@ -1,6 +1,9 @@
 from flask import Flask, render_template, request
 import requests
-#from elasticsearch import Elasticsearch
+from elasticsearch import Elasticsearch
+
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
 
