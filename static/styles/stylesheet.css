@@ -99,7 +99,14 @@ button:hover {
    padding: 14px 16px;
    text-decoration: none;
  }
+<<<<<<< HEAD
 
+=======
+.light-color{
+   color: #fefae0;
+
+}
+>>>>>>> b1322e09012a4437fc04210f1fb720665ecbe4cc
  .taskbar li a:hover {
    background-color: #bc6c25;
  }
