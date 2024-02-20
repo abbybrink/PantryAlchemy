@@ -60,3 +60,8 @@ def pantry():
 @app.route("/account")  # Route for the Pantry page
 def account():
     return render_template('account.html')
+
+@app.route("/about")  # Route for the About page
+def about():
+    return render_template('about.html')
+
