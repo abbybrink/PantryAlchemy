@@ -17,7 +17,7 @@ Elasticsearch
 
 Installation
 Clone the repository:
-git clone https://github.com/abbybrink/PantryAlchemy.git 
+git clone https://github.com/abbybrink/PantryAlchemy.git
 cd PantryAlchemy
 Install dependencies:
 pip install -r requirements.txt
@@ -26,4 +26,5 @@ Configure Elasticsearch:
 Update the Elasticsearch configuration in config.py with the appropriate host and port information.
 
 Run the application:
+pip install -r requirements.txt
 run flask
