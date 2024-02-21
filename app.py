@@ -68,8 +68,6 @@ def account():
 def about():
     return render_template('about.html')
 
-    return render_template("account.html")
-
 @app.route("/user", methods=["GET", "POST"])
 def user():
     if request.method == "POST":
