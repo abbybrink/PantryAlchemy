@@ -1,6 +1,6 @@
 import pyrebase
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, session
 import requests
 from elasticsearch import Elasticsearch
 
@@ -18,7 +18,10 @@ firebase_config = {
     "measurementId": os.getenv("FIREBASE_MEASUREMENT_ID")
 }
 firebase=pyrebase.initialize_app(firebase_config)
-auth=firebase.auth()
+# db=firebase.database()
+# storage=firebase.storage()
+
+
 
 app = Flask(__name__)
 
@@ -57,6 +60,33 @@ def pantry():
     return render_template('pantry.html')
 
 
-@app.route("/account")  # Route for the Pantry page
+@app.route("/account")  # Route for the account page
 def account():
-    return render_template('account.html')
+    return render_template("account.html")
+
+@app.route("/user", methods=["GET", "POST"])
+def user():
+    if request.method == "POST":
+        # Get email and password from the form
+        email = request.form["email"]
+        password = request.form["password"]
+
+        # Authentication with Firebase
+        auth = firebase.auth()
+        try:
+            user = auth.sign_in_with_email_and_password(email, password)
+            # Authentication successful, you may redirect to another page if needed
+            print("Authentication successful")
+            return render_template("account.html", user=user)
+        except:
+            # Authentication failed
+            error_message = "Authentication failed. Please try again."
+            return render_template("account.html", error=error_message)
+
+@app.route("/logout", methods=["POST"])
+def logout():
+    # # Clear the user session
+    # session.pop("user", None)
+    # Redirect the user to the login page
+    return redirect("/account")
+
