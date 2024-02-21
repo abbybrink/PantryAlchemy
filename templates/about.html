@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/stylesheet.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>About Pantry Alchemy</title>
+    <style>
+        /* Custom CSS for additional styling */
+        body {
+            background-color: #f8f9fa; /* Light background color */
+            font-family: 'Arial', sans-serif; /* Font family */
+            color: #333; /* Text color */
+            padding-top: 60px; /* Space for fixed navbar */
+        }
+
+        .container {
+            max-width: 800px; /* Limit width for better readability */
+        }
+
+        h1 {
+            color: #d59622; /* Primary color for headings */
+            margin-bottom: 20px; /* Add spacing below heading */
+        }
+
+        p {
+            font-size: 18px; /* Larger font size for better readability */
+            line-height: 1.6; /* Increase line height for better spacing */
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>About Pantry Alchemy</h1>
+                <p>Welcome to Pantry Alchemy! We're dedicated to helping you create delicious meals from the ingredients you already have in your fridge and pantry. Our mission is to inspire creativity in the kitchen and reduce food waste by providing you with innovative recipes and cooking techniques.</p>
+                <p>Whether you're a seasoned chef or a beginner cook, Pantry Alchemy has something for everyone. Join us on a culinary adventure and discover the magic of cooking with what you have!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
