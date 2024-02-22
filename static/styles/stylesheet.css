@@ -79,37 +79,37 @@ button:hover {
 .taskbar {
    background-color: #283618;
    overflow: hidden;
- }
+}
 
- .taskbar ul {
+.taskbar ul {
    list-style-type: none;
    margin: 0;
    padding: 0;
    overflow: hidden;
- }
+}
 
- .taskbar li {
+.taskbar li {
    float: left;
- }
+}
 
- .taskbar li a {
+.taskbar li a {
    display: block;
    color: #fefae0;
    text-align: center;
    padding: 14px 16px;
    text-decoration: none;
- }
-<<<<<<< HEAD
-
-=======
-.light-color{
-   color: #fefae0;
-
+   font-size: 20px; /* Adjust the font size to match the image size */
 }
->>>>>>> b1322e09012a4437fc04210f1fb720665ecbe4cc
- .taskbar li a:hover {
+
+.taskbar li a:hover {
    background-color: #bc6c25;
- }
- .taskbar .right {
+}
+
+.taskbar .right {
    float: right;
+}
+
+.taskbar li a img {
+   max-width: 50px; /* Adjust the width to make the image smaller */
+   border-radius: 4px;
 }
