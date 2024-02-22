@@ -5,6 +5,9 @@ import requests
 from elasticsearch import Elasticsearch
 
 from dotenv import load_dotenv
+
+app = Flask(__name__)
+
 load_dotenv()
 # Initialize Firebase app
 firebase_config = {
@@ -18,12 +21,14 @@ firebase_config = {
     "measurementId": os.getenv("FIREBASE_MEASUREMENT_ID")
 }
 firebase=pyrebase.initialize_app(firebase_config)
+auth = firebase.auth()
+#PLEASE ADD "SECRET_KEY" to the .env file to make this line work, you can make it any string
+app.secret_key = os.getenv("SECRET_KEY")
 # db=firebase.database()
 # storage=firebase.storage()
 
 
 
-app = Flask(__name__)
 
 @app.route("/") #default temp
 def index():
@@ -62,11 +67,36 @@ def pantry():
 
 @app.route("/account")  # Route for the account page
 def account():
-    return render_template('account.html')
+    if ("user" in session):
+        return render_template('account.html', user=user)
+    else:
+        return render_template('account.html')
 
 @app.route("/about")  # Route for the About page
 def about():
     return render_template('about.html')
+
+@app.route("/signupForm")  # Route for the About page
+def signupForm():
+    return render_template('signup.html')
+
+@app.route("/signup", methods=["POST"])
+def signup():
+    email = request.form["email"]
+    password = request.form["password"]
+    confirm_password = request.form["confirm_password"]
+
+    if password != confirm_password:
+        error_message = "Password and confirm password do not match."
+        return render_template("signup.html", error=error_message)
+    else:
+        try:
+            user = auth.create_user_with_email_and_password(email, password)
+            # auth.send_email_verification(user['idToken'])
+            return render_template("account.html", user=user)
+        except:
+            error_message = "Email already exists, or an error occurred during signup."
+            return render_template("signup.html", error=error_message)
 
 @app.route("/user", methods=["GET", "POST"])
 def user():
@@ -74,11 +104,10 @@ def user():
         # Get email and password from the form
         email = request.form["email"]
         password = request.form["password"]
-
-        # Authentication with Firebase
-        auth = firebase.auth()
+        #to reset password auth.send_password_reset_email(email)
         try:
             user = auth.sign_in_with_email_and_password(email, password)
+            session["user"]=email
             # Authentication successful, you may redirect to another page if needed
             print("Authentication successful")
             return render_template("account.html", user=user)
@@ -90,7 +119,7 @@ def user():
 @app.route("/logout", methods=["POST"])
 def logout():
     # # Clear the user session
-    # session.pop("user", None)
+    session.pop("user",)
     # Redirect the user to the login page
-    return redirect("/account")
+    return redirect("/")
 
