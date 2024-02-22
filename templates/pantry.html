@@ -3,41 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Pantry</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/stylesheet.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
     <title>Recipe Finder</title>
-
 </head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    {% include 'navbar.html' %}
+  {% include 'navbar.html' %}
 
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col">Produce</th>
-            <th scope="col">Protein</th>
-            <th scope="col">Other</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>celery</td>
-            <td>salmon</td>
-            <td>flour</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>apple</td>
-            <td>chicken</td>
-            <td>olive oil</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="container mt-5">
+        <h1>My Pantry</h1>
+        <button id="toggle-form-btn" class="btn btn-primary mb-3">Add Grocery Item</button>
+        <div id="add-grocery-form-container" style="display: none;">
+            <form id="add-grocery-form">
+                <div class="form-group">
+                    <label for="grocery-item">Grocery Item:</label>
+                    <input type="text" class="form-control" id="grocery-item" placeholder="Enter grocery item" required>
+                </div>
+                <div class="form-group">
+                    <label for="expiration-date">Expiration Date:</label>
+                    <input type="date" class="form-control" id="expiration-date">
+                </div>
+                <button type="submit" class="btn btn-primary">Add Item</button>
+            </form>
+        </div>
+        <div id="grocery-list" class="mt-3">
+            <!-- Grocery list will be displayed here -->
+        </div>
+    </div>
 
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Function to add a new grocery item to the list
+        function addGroceryItem(item, expirationDate) {
+            var listItem = document.createElement('div');
+            listItem.className = 'grocery-item d-flex justify-content-between align-items-center mb-2';
+            listItem.innerHTML = `
+                <span>${item} (Expires: ${expirationDate})</span>
+                <button class="btn btn-danger btn-sm delete-item">Delete</button>
+            `;
+            document.getElementById('grocery-list').appendChild(listItem);
+        }
+
+        // Function to handle form submission to add a new grocery item
+        document.getElementById('add-grocery-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var newItemInput = document.getElementById('grocery-item');
+            var expirationDateInput = document.getElementById('expiration-date');
+            var newItem = newItemInput.value.trim();
+            var expirationDate = expirationDateInput.value.trim();
+            if (newItem !== '') {
+                addGroceryItem(newItem, expirationDate);
+                newItemInput.value = '';
+                expirationDateInput.value = '';
+            }
+        });
+
+        // Function to handle deletion of a grocery item
+        document.getElementById('grocery-list').addEventListener('click', function(event) {
+            if (event.target.classList.contains('delete-item')) {
+                event.target.parentElement.remove();
+            }
+        });
+
+        // Toggle visibility of the form when plus button is clicked
+        document.getElementById('toggle-form-btn').addEventListener('click', function() {
+            var formContainer = document.getElementById('add-grocery-form-container');
+            if (formContainer.style.display === 'none' || formContainer.style.display === '') {
+                formContainer.style.display = 'block';
+            } else {
+                formContainer.style.display = 'none';
+            }
+        });
+
+        // Initial items in the pantry
+        var initialItems = [
+            { name: 'Milk', expirationDate: '2024-02-10' },
+            { name: 'Eggs', expirationDate: '2024-02-15' },
+            { name: 'Bread', expirationDate: '2024-02-20' }
+        ];
+
+        // Add initial items to the list
+        initialItems.forEach(function(item) {
+            addGroceryItem(item.name, item.expirationDate);
+        });
+    </script>
 </body>
 </html>
