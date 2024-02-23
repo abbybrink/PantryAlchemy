@@ -25,15 +25,14 @@
         {{ error }}
     </div>
     {% endif %}
-      <h1>Login</h1>
       <form method="POST" action="/user">
-          <label for="email">Email:</label><br>
-          <input type="email" id="email" name="email" required><br>
-          <label for="password">Password:</label><br>
-          <input type="password" id="password" name="password" required><br><br>
-          <input type="submit" value="Login">
+          <h4>Login</h4>
+          <input placeholder="Enter your email" type="email" id="email" name="email" required><br>
+          <input placeholder="Enter your password" type="password" id="password" name="password" required><br><br>
+          <button type="submit" value="Login">Submit</button>
+          <p><a href="/signupForm">Create Account</a></p>
+
       </form>
-      <p><a href="/signupForm">Create Account</a></p>
 
     {% endif %}
 

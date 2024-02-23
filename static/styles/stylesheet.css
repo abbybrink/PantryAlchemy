@@ -7,11 +7,10 @@ body {
 }
 
 h1 {
-   color: #C78023; /* A nice shade of blue */
+   color: #C78023;
    text-align: center;
    margin-bottom: 50px;
    font-size: 3em;
-   text-shadow: 2px 2px 4px #aaa;
 }
 
 form {
@@ -112,4 +111,9 @@ button:hover {
 .taskbar li a img {
    max-width: 50px; /* Adjust the width to make the image smaller */
    border-radius: 4px;
+}
+a, a:hover, a:active, a:visited { color: white; }
+
+nav{
+   margin-bottom: 2%;
 }
