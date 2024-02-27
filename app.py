@@ -18,7 +18,6 @@ def index():
 @app.route("/search", methods=['GET', 'POST']) #format, fetch then add to html
 def search():
     ingredients = request.form['ingredients']
-    #ingredients = ingredients.split(',')
     apiKey = '96ef38777c94480b8b5e59393bac8bca'
     url = 'https://api.spoonacular.com/recipes/findByIngredients'
     params = {'ingredients': ingredients,
@@ -29,10 +28,8 @@ def search():
     recipes = recipes.json()
     if recipes:
         index_recipes(recipes)
-        # for recipe in recipes:
-        #     recipe['_index'] = "num"
-        # with open("new.json", "w") as file:
-        #     json.dump(recipes, file, indent = 4)
+        with open("new.json", "w") as file:
+            json.dump(recipes, file, indent = 4)
 
         # if request.form['checkbox'].checked == True:
         #     search_query = {
@@ -53,7 +50,7 @@ def search():
         #     },
         #     "_source": ["id", "title", "image", "index"]
         # }
-        search_query = generate_query(ingredients)
+        search_query = generate_query(ingredients.split(','))
         # bulk(es, recipes)
         results = es.search(index="recipes-index", body=search_query)
         # print(results)
@@ -102,14 +99,13 @@ def generate_query(target_ingredients):
     # Prepare the list of wildcard queries for each target ingredient
     wild_clauses = []
     for ingredient in target_ingredients:
-        wild_clauses.append({"wildcard": {"usedIngredients.name": f"*{ingredient}*"}})
+        wild_clauses.append({"match": {"usedIngredients.name": f"{ingredient}"}})
     
     # Construct the query using the wild_clauses list directly in the should clause
     query = {
         "query": {
-            "bool": {
-                "should": wild_clauses,  # Directly use the list here
-                "minimum_should_match": all
+            "bool":{
+                "should": wild_clauses
             }
         }
     }
