@@ -1,6 +1,6 @@
 body {
    font-family: 'Arial', sans-serif;
-   background-color: #f4f4f4;
+   background-color: #ffffff;
    margin: 0;
    padding: 20px;
    color: #333;
@@ -48,33 +48,76 @@ button:hover {
 #recipes {
    margin-top: 20px;
    display: grid;
-   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
    gap: 20px;
    padding-top: 20px;
 }
 
-#recipes div {
-   background-color: white;
-   padding: 15px;
+#recipes .recipe-card {
+   background-color: #fff;
+   padding: 20px;
    border-radius: 8px;
-   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-#recipes div:hover {
+#recipes .recipe-card:hover {
    transform: translateY(-5px);
-   box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
-#recipes h3 {
+#recipes .recipe-card h3 {
    margin-top: 0;
    color: #333;
+   font-size: 1.5em;
 }
 
-#recipes img {
-   max-width: 100%;
-   border-radius: 4px;
+#recipes .recipe-card p {
+   font-size: 1.1em;
+   line-height: 1.6;
 }
+
+#recipes .recipe-card b {
+   color: #C78023;
+}
+
+#recipes .recipe-card a {
+   color: #C78023;
+   text-decoration: none;
+}
+
+#recipes .recipe-card a:hover {
+   text-decoration: underline;
+}
+
+#recipes img.recipe-image {
+   display: block;
+   margin: 0 auto;
+   max-width: 100%;
+   height: auto;
+}
+
+#about {
+   margin-top: 50px; 
+}
+
+#about .container {
+   max-width: 800px; 
+   margin: 0 auto; 
+}
+
+#about h1 {
+   color: #d59622; 
+   margin-bottom: 20px; 
+   text-align: center; 
+}
+
+#about p {
+   font-size: 18px;
+   line-height: 1.6; 
+   text-align: justify; 
+}
+
 .taskbar {
    background-color: #283618;
    overflow: hidden;
@@ -95,9 +138,9 @@ button:hover {
    display: block;
    color: #fefae0;
    text-align: center;
-   padding: 14px 16px;
+   padding: 15px 15px 15px 15px;
    text-decoration: none;
-   font-size: 20px; /* Adjust the font size to match the image size */
+   font-size: 25px;
 }
 
 .taskbar li a:hover {
@@ -109,7 +152,7 @@ button:hover {
 }
 
 .taskbar li a img {
-   max-width: 50px; /* Adjust the width to make the image smaller */
+   max-width: 50px;
    border-radius: 4px;
 }
 a, a:hover, a:active, a:visited { color: white; }
