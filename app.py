@@ -24,8 +24,7 @@ firebase=pyrebase.initialize_app(firebase_config)
 auth = firebase.auth()
 #PLEASE ADD "SECRET_KEY" to the .env file to make this line work, you can make it any string
 app.secret_key = os.getenv("SECRET_KEY")
-# db=firebase.database()
-# storage=firebase.storage()
+db=firebase.database()
 
 
 
@@ -37,7 +36,6 @@ def index():
 @app.route("/search", methods=['GET', 'POST']) #format, fetch then add to html
 def search():
     ingredients = request.form['ingredients']
-    ingredients = ingredients.split(',')
     apiKey = '96ef38777c94480b8b5e59393bac8bca'
     url = 'https://api.spoonacular.com/recipes/findByIngredients'
     params = {'ingredients': ingredients,
