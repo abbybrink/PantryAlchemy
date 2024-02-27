@@ -1,3 +1,6 @@
 .env
 
 #ignore .env file
+
+.crt
+#ignore .crt file
