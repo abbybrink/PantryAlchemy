@@ -2,3 +2,5 @@
 
 #ignore .env file
 node_modules
+
+_pycache_
