@@ -7,6 +7,7 @@ import os
 load_dotenv()
 
 api_key = os.getenv("API_KEY") # Spoonacular API Key (Unique) 
+elasticsearch_key = os.getenv("ELASTICSEARCH_KEY")
 base_url = 'https://api.spoonacular.com/recipes/complexSearch'
 query_params = 'query=chicken'
 
@@ -22,7 +23,7 @@ else:
     print(f'Error: {response.status_code} - {response.text}')
 
 #Create the elasticsearch cluster
-es = Elasticsearch('https://localhost:9200', ca_certs='http_ca.crt', basic_auth=("elastic", "=Q0LSPrqauirlURpWZHO"))
+es = Elasticsearch('https://localhost:9200', ca_certs='http_ca.crt', basic_auth=("elastic", elasticsearch_key))
 
 #Read the json file and add a "_index" attribute to each document
 docs = list()
@@ -45,8 +46,8 @@ file.close()
 # for index in es.indices.get_alias(index='*'):
 #     print(index)
 #       OR
-# all_indices = es.indices.get_alias().keys()
-# print(all_indices)
+all_indices = es.indices.get_alias().keys()
+print(all_indices)
 
 #Using elasticsearch helpers to insert documents into the cluster
 helpers.bulk(es, docs)
@@ -62,7 +63,7 @@ search_query = {
 
 # Perform the search
 results = es.search(index="recipe", body=search_query)
-print(results)
+# print(results)
 
 #Extract and return the recipe names from the results
 total_results = results['hits']['total']['value']
