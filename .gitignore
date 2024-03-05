@@ -3,6 +3,6 @@
 #ignore .env file
 node_modules
 
-_pycache_
+__pycache__
 
 http_ca.crt

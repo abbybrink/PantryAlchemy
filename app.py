@@ -7,6 +7,9 @@ from elasticsearch import Elasticsearch
 from dotenv import load_dotenv
 
 app = Flask(__name__)
+# es = Elasticsearch('http://localhost:9201/')
+es = Elasticsearch('https://localhost:9200', ca_certs='http_ca.crt', basic_auth=("elastic", "123456"))
+
 
 load_dotenv()
 # Initialize Firebase app
@@ -45,6 +48,17 @@ def search():
     recipes = requests.get(url=url, params=params)
     recipes = recipes.json()
     if recipes:
+        index_recipes(recipes)
+        search_query = generate_query(ingredients.split(','))
+        results = es.search(index="recipes-index", body=search_query)
+        new_list = []
+        for hit in results['hits']['hits']:
+            recipe_info = {
+            'id': hit['_source']['id'],
+            'title': hit['_source']['title'],
+            'image': hit['_source']['image']
+            }
+            new_list.append(recipe_info)
         return render_template('index.html', recipes=recipes)
     else:
         return render_template('index.html')
@@ -125,3 +139,24 @@ def logout():
 def darkmode():
     return render_template('darkmode.html')
 
+def index_recipes(recipes):
+    for recipe in recipes:
+        # Here, we're assuming each recipe has a unique ID you can use as the Elasticsearch document ID
+        es.index(index="recipes-index", id=recipe['id'], body=recipe)
+
+def generate_query(target_ingredients):
+    # Prepare the list of queries for each target ingredient
+    ingredient_clauses = []
+    for ingredient in target_ingredients:
+        ingredient_clauses.append({"match": {"usedIngredients.name": f"{ingredient}"}})
+    
+    # Construct the query using the list directly in the should clause
+    query = {
+        "query": {
+            "bool":{
+                "should": ingredient_clauses
+            }
+        }
+    }
+
+    return query
