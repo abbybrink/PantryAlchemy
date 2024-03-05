@@ -1,7 +1,7 @@
 <nav class="taskbar">
     <ul>
         <li><a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="Pantry Alchemy Logo"></a></li>
-        <li class="right"><a href="/darkmode">Darkmode</a></li>
+        <li class="right"><button class="btn btn-secondary" onclick="darkMode()">Dark Mode</button></li>
         <li class="right"><a href="/account">Account</a></li>
         {% if 'user' in session %}
             <li class="right"><a href="/pantry">Pantry</a></li>
@@ -9,3 +9,10 @@
         <li class="right"><a href="/about">About</a></li>
     </ul>
 </nav>
+
+<script>
+    function darkMode() {
+        var element = document.body;
+        element.classList.toggle("dark-mode");
+    }
+</script>

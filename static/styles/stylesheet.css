@@ -183,3 +183,8 @@ a, a:hover, a:active, a:visited { color: rgb(0, 0, 0); }
 nav{
    margin-bottom: 2%;
 }
+
+.dark-mode {
+   background-color: black;
+   color: white;
+}
