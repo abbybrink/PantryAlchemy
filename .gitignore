@@ -4,3 +4,5 @@
 node_modules
 
 _pycache_
+
+http_ca.crt
