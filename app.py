@@ -121,3 +121,7 @@ def logout():
     # Redirect the user to the login page
     return redirect("/")
 
+@app.route("/darkmode")
+def darkmode():
+    return render_template('darkmode.html')
+
