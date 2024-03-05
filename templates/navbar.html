@@ -14,5 +14,22 @@
     function darkMode() {
         var element = document.body;
         element.classList.toggle("dark-mode");
+        
+        // Save the state to local storage
+        if(document.body.classList.contains("dark-mode")) {
+            localStorage.setItem("darkMode", "enabled");
+        } else {
+            localStorage.setItem("darkMode", null);
+        }
     }
+    
+    function checkDarkMode() {
+        if (localStorage.getItem("darkMode") === "enabled") {
+            document.body.classList.add("dark-mode");
+        }
+    }
+    
+    // Call checkDarkMode() when the page loads
+    document.addEventListener("DOMContentLoaded", checkDarkMode);
 </script>
+

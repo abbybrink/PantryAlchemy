@@ -185,6 +185,22 @@ nav{
 }
 
 .dark-mode {
-   background-color: black;
-   color: white;
+   background-color: rgb(1, 15, 2);
+   color: rgb(202, 215, 197);
 }
+
+/* Style for links in dark mode */
+.dark-mode a {
+   color: rgb(202, 215, 197) !important;
+   text-decoration: none;
+}
+
+.dark-mode .taskbar {
+   background-color: #121f03;
+   overflow: hidden;
+}
+
+.dark-moode button:hover {
+   background-color: #55504a;
+}
+
