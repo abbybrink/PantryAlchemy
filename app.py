@@ -29,7 +29,8 @@ auth = firebase.auth()
 app.secret_key = os.getenv("SECRET_KEY")
 db=firebase.database()
 
-
+#data={"name":"chicken"}
+#db.push(data)
 
 
 @app.route("/") #default temp
