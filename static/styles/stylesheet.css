@@ -59,22 +59,29 @@ button:hover {
    border-radius: 8px;
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
    transition: transform 0.3s, box-shadow 0.3s;
+   display: flex; /* Add this line to make it a flex container */
 }
 
-#recipes .recipe-card:hover {
-   transform: translateY(-5px);
-   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+#recipes .recipe-card .recipe-content {
+   flex: 1; /* Take remaining space */
+}
+
+#recipes .recipe-card .recipe-image {
+   margin-left: 20px; /* Add margin to separate image from content */
+   max-width: 200px; /* Adjust max-width as needed */
 }
 
 #recipes .recipe-card h3 {
    margin-top: 0;
    color: #333;
    font-size: 1.5em;
+   margin-bottom: 10px; /* Add margin bottom for spacing */
 }
 
 #recipes .recipe-card p {
    font-size: 1.1em;
    line-height: 1.6;
+   margin-bottom: 10px; /* Add margin bottom for spacing */
 }
 
 #recipes .recipe-card b {
@@ -89,6 +96,7 @@ button:hover {
 #recipes .recipe-card a:hover {
    text-decoration: underline;
 }
+
 
 .recipe-summary a {
    color: black !important;
