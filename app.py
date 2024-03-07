@@ -105,6 +105,8 @@ def signup():
     else:
         try:
             user = auth.create_user_with_email_and_password(email, password)
+            session["user"]=email
+
             # auth.send_email_verification(user['idToken'])
             return render_template("account.html", user=user)
         except:
@@ -150,7 +152,7 @@ def generate_query(target_ingredients):
     ingredient_clauses = []
     for ingredient in target_ingredients:
         ingredient_clauses.append({"match": {"usedIngredients.name": f"{ingredient}"}})
-    
+
     # Construct the query using the list directly in the should clause
     query = {
         "query": {
