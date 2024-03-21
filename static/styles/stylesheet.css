@@ -1,9 +1,20 @@
 body {
    font-family: 'Arial', sans-serif;
-   background-color: #ffffff;
+   background-color: #c9a083 !important;
    margin: 0;
    padding: 20px;
    color: #333;
+   /*#fffff6
+#fffff5
+#fffff7
+#1e1e1e
+#c9a083
+#fffff4
+#caa184
+#fffff8
+#bfbca4
+#bebba3*/
+
 }
 
 h1 {
@@ -14,7 +25,7 @@ h1 {
 }
 
 form {
-   background-color: rgb(98, 122, 53); /* olive tone */
+   background-color: #bfbca4; /* olive tone */
    padding: 20px;
    border-radius: 8px;
    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
