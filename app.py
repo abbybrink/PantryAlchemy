@@ -29,9 +29,6 @@ auth = firebase.auth()
 app.secret_key = os.getenv("SECRET_KEY")
 db=firebase.database()
 
-#data={"name":"chicken"}
-#db.push(data)
-
 
 @app.route("/") #default temp
 def index():
@@ -75,13 +72,65 @@ def recipe(recipe_id):
 
 @app.route("/pantry")  # Route for the Pantry page
 def pantry():
-    return render_template('pantry.html')
+     # Fetch pantry items for the user from Firebase database
+    pantry_items = []
+    user = session.get('user')  # Get the user's ID from the session
+    user_id=user['localId']
+    pantry_items=get_ingredients(user_id)
+    return render_template('pantry.html', pantry_items=pantry_items)
+
+def get_ingredients(user_id):
+    pantry_data = db.child('pantry').child(user_id).get()
+    pantry_items = {}  # Initialize an empty dictionary for pantry items
+
+    if pantry_data.each():
+        # Iterate through each item in pantry_data (assuming it's a Firebase data snapshot)
+        for item in pantry_data.each():
+            # Extract the local ID of the item (assuming it's stored as 'id' in the item data)
+            item_id = item.key()
+            # Extract key-value pairs from the item and create a dictionary for each item
+            item_dict = {k: v for k, v in item.val().items()}
+            # Store the item dictionary in the pantry_items dictionary with the item ID as the key
+            pantry_items[item_id] = item_dict
+    return pantry_items
+
+
+@app.route("/add_to_pantry", methods=['POST'])
+def add_to_pantry():
+    ingredient = request.form['ingredient']
+    expiration_date = request.form['expiration_date']
+    user = session.get('user')  # Get the user's ID from the session
+    user_id=user['localId']
+    db.child('pantry').child(user_id).push({'ingredient': ingredient, 'expiration_date': expiration_date})
+    pantry_items=get_ingredients(user_id)
+    return render_template('pantry.html',pantry_items=pantry_items)  # Redirect or render as needed
+
+from flask import request, session, redirect
+
+# Your existing code and imports...
+
+@app.route("/delete_from_pantry", methods=['POST'])
+def delete_from_pantry():
+    item_id_to_delete = request.form.get('ingredient_id')  # Get the item ID to delete from form data
+    if item_id_to_delete:
+        # Delete the ingredient from the database for the user
+        user = session.get('user')  # Get the user's ID from the session
+        user_id = user['localId']
+        db.child('pantry').child(user_id).child(item_id_to_delete).remove()  # Remove the ingredient based on item ID
+        # Redirect back to the pantry page after deletion
+        pantry_items = get_ingredients(user_id)
+        return render_template('pantry.html', pantry_items=pantry_items)
+    else:
+        # Handle case where item ID to delete is not provided
+        return "Item ID to delete not specified", 400  # Return a 400 Bad Request status
+
+
 
 
 @app.route("/account")  # Route for the account page
 def account():
     if ("user" in session):
-        return render_template('account.html', user=user)
+        return render_template('account.html', user=session.get("user"))
     else:
         return render_template('account.html')
 
@@ -105,24 +154,25 @@ def signup():
     else:
         try:
             user = auth.create_user_with_email_and_password(email, password)
-            session["user"]=email
+            session["user"] = user  # Optionally, store the user's email as well
 
-            # auth.send_email_verification(user['idToken'])
             return render_template("account.html", user=user)
         except:
             error_message = "Email already exists, or an error occurred during signup."
             return render_template("signup.html", error=error_message)
 
-@app.route("/user", methods=["GET", "POST"])
+
+@app.route("/user", methods=["POST"])
 def user():
     if request.method == "POST":
         # Get email and password from the form
         email = request.form["email"]
         password = request.form["password"]
-        #to reset password auth.send_password_reset_email(email)
+        # to reset password auth.send_password_reset_email(email)
         try:
             user = auth.sign_in_with_email_and_password(email, password)
-            session["user"]=email
+            session["user"] = user  # Optionally, store the user's email as well
+
             # Authentication successful, you may redirect to another page if needed
             print("Authentication successful")
             return render_template("account.html", user=user)
@@ -130,6 +180,7 @@ def user():
             # Authentication failed
             error_message = "Authentication failed. Please try again."
             return render_template("account.html", error=error_message)
+
 
 @app.route("/logout", methods=["POST"])
 def logout():
