@@ -186,7 +186,7 @@ nav{
 
 .dark-mode {
    background-color: rgb(1, 15, 2);
-   color: rgb(202, 215, 197);
+   color: rgb(229, 236, 227);
 }
 
 /* Style for links in dark mode */
@@ -196,11 +196,24 @@ nav{
 }
 
 .dark-mode .taskbar {
-   background-color: #121f03;
+   background-color: #3c5123;
    overflow: hidden;
 }
 
-.dark-moode button:hover {
-   background-color: #55504a;
+.dark-mode .taskbar li a:hover {
+   background-color: #8e511c;
 }
 
+.dark-mode button {
+   background-color: #96621f;
+   color: white;
+}
+
+.dark-mode button:hover {
+   background-color: #a6a19a;
+}
+
+.dark-mode form {
+   background-color: rgb(63, 78, 34); /* olive tone */
+   box-shadow: 0 4px 8px rgba(255, 255, 255, 0.102);
+}
