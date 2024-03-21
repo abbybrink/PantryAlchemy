@@ -8,7 +8,8 @@ from dotenv import load_dotenv
 
 app = Flask(__name__)
 # es = Elasticsearch('http://localhost:9201/')
-es = Elasticsearch('https://localhost:9200', ca_certs='http_ca.crt', basic_auth=("elastic", "123456"))
+elasticsearch_key = os.getenv("ELASTICSEARCH_KEY")
+es = Elasticsearch('https://localhost:9200', ca_certs='http_ca.crt', basic_auth=("elastic", elasticsearch_key))
 
 
 load_dotenv()
@@ -39,7 +40,7 @@ def index():
 @app.route("/search", methods=['GET', 'POST']) #format, fetch then add to html
 def search():
     ingredients = request.form['ingredients']
-    apiKey = '96ef38777c94480b8b5e59393bac8bca'
+    apiKey = os.getenv("API_KEY")
     url = 'https://api.spoonacular.com/recipes/findByIngredients'
     params = {'ingredients': ingredients,
               'number': 5,
