@@ -132,24 +132,24 @@ button:hover {
 }
 
 #about {
-   margin-top: 50px; 
+   margin-top: 50px;
 }
 
 #about .container {
-   max-width: 800px; 
-   margin: 0 auto; 
+   max-width: 800px;
+   margin: 0 auto;
 }
 
 #about h1 {
-   color: #d59622; 
-   margin-bottom: 20px; 
-   text-align: center; 
+   color: #d59622;
+   margin-bottom: 20px;
+   text-align: center;
 }
 
 #about p {
    font-size: 18px;
-   line-height: 1.6; 
-   text-align: justify; 
+   line-height: 1.6;
+   text-align: justify;
 }
 
 .taskbar {

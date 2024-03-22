@@ -155,13 +155,15 @@ def signup():
     else:
         try:
             user = auth.create_user_with_email_and_password(email, password)
-            session["user"] = user  # Optionally, store the user's email as well
+            session["user"] = user
 
             return render_template("account.html", user=user)
-        except:
-            error_message = "Email already exists, or an error occurred during signup."
+        except requests.exceptions.HTTPError as e:
+            error_message = str(e)  # Get the error message from the HTTPError
             return render_template("signup.html", error=error_message)
-
+        except Exception as e:
+            error_message = "An error occurred during signup."
+            return render_template("signup.html", error=error_message)
 
 @app.route("/user", methods=["POST"])
 def user():
