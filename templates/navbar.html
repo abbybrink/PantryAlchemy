@@ -1,7 +1,7 @@
 <nav class="taskbar">
     <ul>
         <li><a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="Pantry Alchemy Logo"></a></li>
-        <li class="right"><button class="btn btn-secondary" onclick="darkMode()">Dark Mode</button></li>
+        <li class="right"><button id="toggleDarkMode" class="btn btn-secondary" onclick="darkMode()">Dark Mode</button></li>
         <li class="right"><a href="/account">Account</a></li>
         {% if 'user' in session %}
             <li class="right"><a href="/pantry">Pantry</a></li>
@@ -15,17 +15,24 @@
         var element = document.body;
         element.classList.toggle("dark-mode");
         
+        var darkModeBtn = document.getElementById("toggleDarkMode");
+
         // Save the state to local storage
         if(document.body.classList.contains("dark-mode")) {
             localStorage.setItem("darkMode", "enabled");
+            darkModeBtn.textContent = "Light Mode"; // Change the button text to Light Mode
         } else {
             localStorage.setItem("darkMode", null);
+            darkModeBtn.textContent = "Dark Mode"; // Change the button text to Dark Mode
         }
     }
     
     function checkDarkMode() {
         if (localStorage.getItem("darkMode") === "enabled") {
             document.body.classList.add("dark-mode");
+            document.getElementById("toggleDarkMode").textContent = "Light Mode";
+        } else {
+            document.getElementById("toggleDarkMode").textContent = "Dark Mode";
         }
     }
     

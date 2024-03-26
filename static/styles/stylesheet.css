@@ -197,7 +197,7 @@ nav{
 }
 
 .dark-mode {
-   background-color: rgb(1, 15, 2);
+   background-color: rgb(1, 15, 2) !important;
    color: rgb(229, 236, 227);
 }
 
