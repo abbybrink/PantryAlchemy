@@ -116,7 +116,6 @@ from flask import request, session, redirect
 def delete_from_pantry():
     item_id_to_delete = request.form.get('ingredient_id')  # Get the item ID to delete from form data
     if item_id_to_delete:
-        # Delete the ingredient from the database for the user
         user = session.get('user')  # Get the user's ID from the session
         user_id = user['localId']
         db.child('pantry').child(user_id).child(item_id_to_delete).remove()  # Remove the ingredient based on item ID
@@ -126,6 +125,31 @@ def delete_from_pantry():
     else:
         # Handle case where item ID to delete is not provided
         return "Item ID to delete not specified", 400  # Return a 400 Bad Request status
+
+@app.route("/edit_pantry_item", methods=['POST'])
+def edit_pantry_item():
+    item_id = request.form.get('ingredient_id')
+    new_ingredient = request.form.get('new_ingredient')
+    new_expiration_date = request.form.get('new_expiration_date')
+    user = session.get('user')
+    user_id = user['localId']
+    if item_id:
+        pantry_ref = db.child('pantry').child(user_id).child(item_id)
+        if new_ingredient or new_expiration_date:  # Check if either new_ingredient or new_expiration_date is provided
+            updated_data = {}  # Create a dictionary to store updated data
+            if new_ingredient:
+                updated_data['ingredient'] = new_ingredient
+            if new_expiration_date:
+                updated_data['expiration_date'] = new_expiration_date
+
+            pantry_ref.update(updated_data)  # Update the pantry item with the provided data
+
+            # Redirect to the pantry page after updating
+            return redirect('/pantry')  # Replace '/pantry' with the actual URL of your pantry page
+        else:
+            return "Nothing changed", 400  # Return a 400 Bad Request status if nothing is updated
+    else:
+        return "Item ID not specified", 400  # Return a 400 Bad Request status if item ID is not provided
 
 
 

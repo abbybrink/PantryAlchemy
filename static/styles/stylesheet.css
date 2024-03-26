@@ -196,7 +196,9 @@ a, a:hover, a:active, a:visited { color: rgb(0, 0, 0); }
 nav{
    margin-bottom: 2%;
 }
-
+.center-button {
+   text-align: center;
+}
 .dark-mode {
    background-color: rgb(1, 15, 2) !important;
    color: rgb(229, 236, 227);

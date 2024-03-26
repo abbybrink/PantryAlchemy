@@ -25,9 +25,10 @@
                 <label for="expiration-date">Expiration Date:</label>
                 <input type="date" class="form-control" id="expiration-date" name="expiration_date">
             </div>
-            <button type="submit" class="btn btn-primary">Add Item</button>
+            <button type="submit">Add Item</button>
         </form>
-      </div>
+    </div>
+
 
     <div id="grocery-list" class="mt-3">
         <form method="POST" action="/search">
@@ -43,15 +44,132 @@
                 </form> -->
             </div>
             {% endfor %}
-            <button type="submit" class="btn btn-primary btn-sm">Find Recipes</button>
+            <button type="submit">Find Recipes</button>
         </form>
     </div>
-    
-    
+    <div class="center-button">
+    <button id="toggleEditFormButton" onclick="toggleEditForm()">Edit Items</button>
+    </div>
+
+    <div id="editFormContainer" style="display: none;">
+
+        <form id="editDeleteForm">
+            <label for="selected_item">Select Item:</label>
+            <select id="selected_item" name="selected_item">
+                {% for item_id, item_data in pantry_items.items() %}
+                    <option value="{{ item_id }}">{{ item_data.ingredient }} (Expires: {{ item_data.expiration_date }})</option>
+                {% endfor %}
+            </select><br><br>
+            <input type="hidden" id="ingredient_id" name="ingredient_id" value="">
+            <label for="new_ingredient">New Ingredient Name:</label>
+            <input type="text" id="new_ingredient" name="new_ingredient"><br><br>
+            <label for="new_expiration_date">New Expiration Date:</label>
+            <input type="date" id="new_expiration_date" name="new_expiration_date"><br><br>
+            <button type="button" onclick="editPantryItem()">Save Changes</button>
+            <button type="button" onclick="deletePantryItem()">Delete Item</button>
+        </form>
+    </div>
+
 
     <!-- jQuery and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('selected_item').addEventListener('change', function() {
+            const selectedItemId = this.value;
+            document.getElementById('ingredient_id').value = selectedItemId;
+        });
+        document.getElementById('add-grocery-form').addEventListener('submit', function(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+
+            // Submit the form via fetch API
+            fetch(this.action, {
+                method: this.method,
+                body: new FormData(this)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Pantry item added successfully');
+                    location.reload(); // Reload the page after a successful form submission
+                } else {
+                    alert('Failed to add pantry item');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred');
+            });
+        });
+        function populateForm() {
+            const selectElement = document.getElementById('pantryItems');
+            const selectedItem = selectElement.options[selectElement.selectedIndex];
+            const ingredientIdInput = document.getElementById('ingredient_id');
+            const newIngredientInput = document.getElementById('new_ingredient');
+            const expirationDateInput = document.getElementById('new_expiration_date');
+
+            // Populate form fields with selected pantry item data
+            ingredientIdInput.value = selectedItem.value;
+            newIngredientInput.value = selectedItem.text.split(' (')[0];
+            // You may need to fetch and display expiration date data based on the selected item
+        }
+
+        function editPantryItem() {
+            const form = document.getElementById('editDeleteForm');
+            const formData = new FormData(form);
+
+            fetch('/edit_pantry_item', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Pantry item updated successfully');
+                    location.reload(); // Reload the page after a successful operation
+                } else {
+                    alert('Failed to update pantry item');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while updating pantry item');
+            });
+        }
+
+        function deletePantryItem() {
+            const form = document.getElementById('editDeleteForm');
+            const formData = new FormData(form);
+
+            fetch('/delete_from_pantry', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Pantry item deleted successfully');
+                    location.reload(); // Reload the page after a successful operation
+                } else {
+                    alert('Failed to delete pantry item');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while deleting pantry item');
+            });
+        }
+        function toggleEditForm() {
+            const editFormContainer = document.getElementById('editFormContainer');
+            const toggleEditFormButton = document.getElementById('toggleEditFormButton');
+
+            if (editFormContainer.style.display === 'none') {
+                editFormContainer.style.display = 'block';
+                toggleEditFormButton.textContent = 'Close Edit Form';
+            } else {
+                editFormContainer.style.display = 'none';
+                toggleEditFormButton.textContent = 'Edit Items';
+            }
+        }
+    </script>
 </body>
 </html>
