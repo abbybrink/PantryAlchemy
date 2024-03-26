@@ -1,6 +1,6 @@
 body {
    font-family: 'Arial', sans-serif;
-   background-color: #e8dbc9 !important;
+   background-color: #f4e2d3 !important;
    margin: 0;
    padding: 20px;
    color: #333;
@@ -198,7 +198,7 @@ nav{
 }
 
 .dark-mode {
-   background-color: rgb(1, 15, 2);
+   background-color: rgb(1, 15, 2) !important;
    color: rgb(229, 236, 227);
 }
 
