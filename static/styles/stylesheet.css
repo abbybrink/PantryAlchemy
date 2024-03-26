@@ -26,7 +26,8 @@ h1 {
 }
 
 form {
-   background-color: #545C45; /* olive tone */
+   /*background-color: #545C45; olive tone */
+   background: linear-gradient(to right, #956a4e, #8b6248);
    padding: 20px;
    border-radius: 8px;
    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -154,7 +155,7 @@ button:hover {
 }
 
 .taskbar {
-   background-color: #545C45;
+   background: linear-gradient(to right, #546832, #3a4920);
    overflow: hidden;
 }
 
@@ -260,6 +261,6 @@ nav{
    font-family: 'Snell Roundhand', cursive;
    font-size: 1em;
    color: white;
-   background: linear-gradient(to right, #ff8c00, #ff0000);
+   background: linear-gradient(to right, #718b43, #3a4920);
 }
 
