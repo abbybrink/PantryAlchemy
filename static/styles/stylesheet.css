@@ -248,3 +248,17 @@ nav{
    margin-top: 10px;
    margin-bottom: 5px;
 }
+
+.footer{
+   padding: 20px 0; /* Padding at the top and bottom */
+   text-align: center; /* Center-align the content */
+   position: fixed; /* Fixed position at the bottom of the viewport */
+   left: 0;
+   bottom: 0;
+   width: 100%; /* Full width */
+   font-family: 'Snell Roundhand', cursive;
+   font-size: 1em;
+   color: white;
+   background: linear-gradient(to right, #ff8c00, #ff0000);
+}
+
