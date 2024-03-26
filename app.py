@@ -41,7 +41,7 @@ def search():
     apiKey = os.getenv("API_KEY")
     url = 'https://api.spoonacular.com/recipes/findByIngredients'
     params = {'ingredients': ingredients,
-              'number': 5,
+              'number': 12,
               'apiKey': apiKey
               }
     recipes = requests.get(url=url, params=params)

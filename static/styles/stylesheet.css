@@ -228,3 +228,23 @@ nav{
    background-color: rgb(63, 78, 34); /* olive tone */
    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.102);
 }
+.recipe-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+   grid-gap: 20px;
+}
+
+.recipe-item {
+   border: 1px solid #ccc;
+   padding: 10px;
+}
+
+.recipe-item img {
+   max-width: 100%;
+   height: auto;
+}
+
+.recipe-item h5 {
+   margin-top: 10px;
+   margin-bottom: 5px;
+}
