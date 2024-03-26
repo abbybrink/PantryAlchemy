@@ -37,7 +37,9 @@ def index():
 
 @app.route("/search", methods=['GET', 'POST']) #format, fetch then add to html
 def search():
-    ingredients = request.form['ingredients']
+    if request.form['ingredients']:
+        ingredients_list = request.form.getlist('ingredients')
+        ingredients = ",".join(ingredients_list)
     apiKey = os.getenv("API_KEY")
     url = 'https://api.spoonacular.com/recipes/findByIngredients'
     params = {'ingredients': ingredients,
