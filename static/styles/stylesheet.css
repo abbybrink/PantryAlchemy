@@ -253,16 +253,24 @@ nav{
    margin-bottom: 5px;
 }
 
-.footer{
-   padding: 20px 0; /* Padding at the top and bottom */
+#footer{
    text-align: center; /* Center-align the content */
-   position: fixed; /* Fixed position at the bottom of the viewport */
-   left: 0;
+   position: absolute;
    bottom: 0;
    width: 100%; /* Full width */
+   height: 3rem;
    font-family: 'Snell Roundhand', cursive;
    font-size: 1em;
    color: white;
    background: linear-gradient(to right, #718b43, #3a4920);
+}
+
+#page-container {
+   position: relative;
+   min-height: 100vh;
+}
+
+#content-wrap {
+   padding-bottom: 3rem;    /* Footer height */
 }
 

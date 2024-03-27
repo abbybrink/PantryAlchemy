@@ -8,23 +8,26 @@
     <title>Recipe Finder</title>
 </head>
 <body>
-    {% include 'navbar.html' %}
+    <div id="page-container">
+    <div id="content-wrap">
+        {% include 'navbar.html' %}
 
-    <form action="/search" method="post">
-        <input type="text" id="ingredients" name="ingredients" placeholder="Enter ingredients (comma separated)">
-        <button id="findRecipesButton">Find Recipes</button>
-    </form>
+        <form action="/search" method="post">
+            <input type="text" id="ingredients" name="ingredients" placeholder="Enter ingredients (comma separated)">
+            <button id="findRecipesButton">Find Recipes</button>
+        </form>
 
-    <div id="recipes" class="recipe-grid">
-        {% for recipe in recipes %}
-            <div class="recipe-item">
-                <img src="{{ recipe['image'] }}" alt="{{ recipe['title'] }}">
-                <h5><a href="/recipe/{{ recipe['id'] }}">{{ recipe['title'] }}</a></h5>
-            </div>
-        {% endfor %}
+        <div id="recipes" class="recipe-grid">
+            {% for recipe in recipes %}
+                <div class="recipe-item">
+                    <img src="{{ recipe['image'] }}" alt="{{ recipe['title'] }}">
+                    <h5><a href="/recipe/{{ recipe['id'] }}">{{ recipe['title'] }}</a></h5>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-
     {% include 'footer.html' %}
+    </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.4.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
