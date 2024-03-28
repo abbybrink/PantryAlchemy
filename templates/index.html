@@ -14,7 +14,10 @@
         <!-- Jumbotron -->
         <div class="p-5 text-center bg-image rounded-3" style="
         background-image: url('https://img.freepik.com/free-photo/close-up-woman-hand-put-topping-homemade-pizza_1150-4699.jpg');
-        background-size: 100% auto; /* Ensure the background image covers the entire width without repeating */        ">
+        background-size: cover; /* Ensure the background image covers the entire width without cropping */
+        background-position: center; /* Center the background image */
+        height: 600px;
+    ">
             <div class="d-flex justify-content-center align-items-center h-100">
                 <form style="background-color: rgba(255, 255, 255, 0.2);" action="/search" method="post">
                     <input type="text" id="ingredients" name="ingredients" placeholder="Enter ingredients (comma separated)">
