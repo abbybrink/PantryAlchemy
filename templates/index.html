@@ -11,11 +11,20 @@
     <div id="page-container">
     <div id="content-wrap">
         {% include 'navbar.html' %}
+        <!-- Jumbotron -->
+        <div class="p-5 text-center bg-image rounded-3" style="
+        background-image: url('https://img.freepik.com/free-photo/close-up-woman-hand-put-topping-homemade-pizza_1150-4699.jpg');
+        background-size: 100% auto; /* Ensure the background image covers the entire width without repeating */        ">
+            <div class="d-flex justify-content-center align-items-center h-100">
+                <form style="background-color: rgba(255, 255, 255, 0.2);" action="/search" method="post">
+                    <input type="text" id="ingredients" name="ingredients" placeholder="Enter ingredients (comma separated)">
+                    <button id="findRecipesButton">Find Recipes</button>
+                </form>
+            </div>
+        </div>
 
-        <form action="/search" method="post">
-            <input type="text" id="ingredients" name="ingredients" placeholder="Enter ingredients (comma separated)">
-            <button id="findRecipesButton">Find Recipes</button>
-        </form>
+        <!-- Jumbotron -->
+
 
         <div id="recipes" class="recipe-grid">
             {% for recipe in recipes %}

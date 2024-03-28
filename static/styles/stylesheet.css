@@ -30,10 +30,16 @@ form {
    background: linear-gradient(to right, #956a4e, #8b6248);
    padding: 20px;
    border-radius: 8px;
-   /* box-shadow:
-      0.3em 0.3em 1em rgba(4, 4, 4, 0.6); */
+   box-shadow:
+      0.3em 0.3em 1em rgba(4, 4, 4, 0.6);
    max-width: 500px;
    margin: 20px auto;
+}
+
+.transparent-form {
+   background-color: rgba(255, 255, 255, 0.5); /* 50% transparent white background */
+   padding: 20px; /* Adjust padding as needed */
+   border-radius: 10px; /* Optional: adds rounded corners */
 }
 
 input[type="text"] {
@@ -158,8 +164,8 @@ button:hover {
 .taskbar {
    background: linear-gradient(to right, #546832, #3a4920);
    overflow: hidden;
-   /* box-shadow:
-      0.3em 0.3em 1em rgba(4, 4, 4, 0.6); */
+   box-shadow:
+      0.3em 0.3em 1em rgba(4, 4, 4, 0.6);
 }
 
 .taskbar ul {
@@ -217,8 +223,8 @@ nav{
    /*background-color: #3c5123;*/
    background: linear-gradient(to right, #3d4c23, #19210e);
    overflow: hidden;
-   /* box-shadow:
-      0.3em 0.3em 1em rgba(4, 4, 4, 0.6); */
+   box-shadow:
+      0.3em 0.3em 1em rgba(4, 4, 4, 0.6);
 }
 
 .dark-mode .taskbar li a:hover {
@@ -227,8 +233,8 @@ nav{
 
 .dark-mode footer{
    background: linear-gradient(to right, #465728, #252f14) !important;
-   /* box-shadow:
-      0.3em 0.3em 1em rgba(4, 4, 4, 0.6); */
+   box-shadow:
+      0.3em 0.3em 1em rgba(4, 4, 4, 0.6);
 }
 
 .dark-mode button {
@@ -242,8 +248,8 @@ nav{
 
 .dark-mode form {
    background: linear-gradient(to right, #694b37, #4a3426);
-   /* box-shadow:
-      0.3em 0.3em 1em rgba(4, 4, 4, 0.6); */
+   box-shadow:
+      0.3em 0.3em 1em rgba(4, 4, 4, 0.6);
 }
 .recipe-grid {
    display: grid;
@@ -276,8 +282,8 @@ nav{
    font-size: 1em;
    color: white;
    background: linear-gradient(to right, #718b43, #3a4920);
-   /* box-shadow:
-      0.3em 0.3em 1em rgba(4, 4, 4, 0.6); */
+   box-shadow:
+      0.3em 0.3em 1em rgba(4, 4, 4, 0.6);
 }
 
 #page-container {
