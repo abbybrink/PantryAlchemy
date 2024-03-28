@@ -200,7 +200,7 @@ nav{
    text-align: center;
 }
 .dark-mode {
-   background-color: rgb(1, 15, 2) !important;
+   background-color: #141311 !important;
    color: rgb(229, 236, 227);
 }
 
@@ -211,7 +211,8 @@ nav{
 }
 
 .dark-mode .taskbar {
-   background-color: #3c5123;
+   /*background-color: #3c5123;*/
+   background: linear-gradient(to right, #435328, #242e14);
    overflow: hidden;
 }
 
@@ -219,8 +220,12 @@ nav{
    background-color: #8e511c;
 }
 
+.dark-mode .footer{
+   background: linear-gradient(to right, #566b34, #1e2611);
+}
+
 .dark-mode button {
-   background-color: #96621f;
+   background-color: #546833;
    color: white;
 }
 
@@ -229,7 +234,7 @@ nav{
 }
 
 .dark-mode form {
-   background-color: rgb(63, 78, 34); /* olive tone */
+   background: linear-gradient(to right, #694b37, #4a3426);
    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.102);
 }
 .recipe-grid {
