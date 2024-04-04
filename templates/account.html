@@ -15,9 +15,10 @@
     {% if 'user' in session %}
     <!-- User is logged in -->
     <h1>Welcome to Your Account, {{ user['email'] }}</h1>
-    <form action="/logout" method="post">
+    <form action="/logout" method="post" class="center-form transparent-form">
         <button type="submit">Logout</button>
     </form>
+
     {% else %}
     <!-- User is not logged in -->
     {% if error %}

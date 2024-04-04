@@ -1,8 +1,7 @@
 body {
-   font-family: 'Arial', sans-serif;
+   font-family: Arial, Helvetica, sans-serif;
    background-color: #f4e2d3 !important;
    margin: 0;
-   padding: 20px;
    color: #333;
    /*#fffff6
 #fffff5
@@ -21,26 +20,35 @@ body {
 h1 {
    color: #787C66 !important;
    text-align: center;
+   margin-top: 25px !important;
    margin-bottom: 50px;
    font-size: 3em;
+   font-family: "Copperplate","fantasy";
+
+}
+
+.transparent-form {
+   background-color: transparent; /* Set the form background to transparent */
+   border: none; /* Remove the border */
+   box-shadow: none; /* Remove the shadow */
 }
 
 form {
    /*background-color: #545C45; olive tone */
-   background: linear-gradient(to right, #956a4e, #8b6248);
    padding: 20px;
    border-radius: 8px;
    box-shadow:
       0.3em 0.3em 1em rgba(4, 4, 4, 0.6);
    max-width: 500px;
    margin: 20px auto;
+   font-family: "Copperplate","fantasy";
+
+}
+.brown-form{
+   background: linear-gradient(to right, #956a4e, #8b6248);
 }
 
-.transparent-form {
-   background-color: rgba(255, 255, 255, 0.5); /* 50% transparent white background */
-   padding: 20px; /* Adjust padding as needed */
-   border-radius: 10px; /* Optional: adds rounded corners */
-}
+
 
 input[type="text"] {
    width: calc(100% - 22px);
@@ -70,7 +78,9 @@ button:hover {
    display: grid;
    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
    gap: 20px;
-   padding-top: 20px;
+   padding-bottom: 20px;
+   padding-left: 40px ;
+   padding-right:40px ;
 }
 
 #recipes .recipe-card {
@@ -96,6 +106,7 @@ button:hover {
    color: #333;
    font-size: 1.5em;
    margin-bottom: 10px; /* Add margin bottom for spacing */
+   font-family: "Copperplate","fantasy";
 }
 
 #recipes .recipe-card p {
@@ -161,6 +172,18 @@ button:hover {
    text-align: justify;
 }
 
+.center-form {
+   text-align: center; /* Center the contents of the form horizontally */
+}
+
+
+
+.transparent-form button {
+   padding: 10px 20px; /* Adjust button padding as needed */
+   border-radius: 5px; /* Add border radius for button */
+}
+
+
 .taskbar {
    background: linear-gradient(to right, #546832, #3a4920);
    overflow: hidden;
@@ -177,6 +200,8 @@ button:hover {
 
 .taskbar li {
    float: left;
+   align-items: center; /* Center items vertically */
+
 }
 
 .taskbar li a {
@@ -202,8 +227,11 @@ button:hover {
 }
 a, a:hover, a:active, a:visited { color: rgb(0, 0, 0); }
 
-nav{
+/* nav{
    margin-bottom: 2%;
+} */
+.nav_font{
+   font-family: "Copperplate","fantasy";
 }
 .center-button {
    text-align: center;
@@ -278,7 +306,7 @@ nav{
    bottom: 0;
    width: 100%; /* Full width */
    height: 3rem;
-   font-family: 'Snell Roundhand', cursive;
+   font-family: "Copperplate","fantasy";
    font-size: 1em;
    color: white;
    background: linear-gradient(to right, #718b43, #3a4920);
