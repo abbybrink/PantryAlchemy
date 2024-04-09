@@ -16,7 +16,7 @@
 
       <h1>My Pantry</h1>
       <div id="add-grocery-form-container">
-        <form id="add-grocery-form" method="POST" action="{{ url_for('add_to_pantry') }}">
+        <form id="add-grocery-form" method="POST" action="{{ url_for('add_to_pantry') }}" class="brown-form">
             <div class="form-group">
                 <label for="grocery-item">Grocery Item:</label>
                 <input type="text" class="form-control" id="grocery-item" name="ingredient" placeholder="Enter grocery item" required>
@@ -31,7 +31,7 @@
 
 
     <div id="grocery-list" class="mt-3">
-        <form method="POST" action="/search">
+        <form method="POST" action="/search" class="brown-form">
             {% for item_id, item_data in pantry_items.items() %}
             <div class="grocery-item d-flex justify-content-between align-items-center mb-2">
                 <label>
@@ -53,7 +53,7 @@
 
     <div id="editFormContainer" style="display: none;">
 
-        <form id="editDeleteForm">
+        <form id="editDeleteForm" class="brown-form">
             <label for="selected_item">Select Item:</label>
             <select id="selected_item" name="selected_item">
                 {% for item_id, item_data in pantry_items.items() %}
@@ -101,6 +101,17 @@
                 console.error('Error:', error);
                 alert('An error occurred');
             });
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectElement = document.getElementById('selected_item');
+            if (selectElement && selectElement.options.length > 0) {
+                // Set the default selected item to the first item in the list
+                selectElement.selectedIndex = 0;
+
+                // Trigger the change event to populate the form fields
+                const event = new Event('change');
+                selectElement.dispatchEvent(event);
+            }
         });
         function populateForm() {
             const selectElement = document.getElementById('pantryItems');

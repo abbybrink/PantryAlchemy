@@ -1,7 +1,7 @@
-<nav class="taskbar">
-    <ul>
+<nav class="taskbar nav_center">
+    <ul class="nav_font">
         <li><a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="Pantry Alchemy Logo"></a></li>
-        <li class="right"><button id="toggleDarkMode" class="btn btn-secondary" onclick="darkMode()">Dark Mode</button></li>
+        <li class="right"><button id="changeMode" class="btn btn-secondary" onclick="darkMode()">Dark Mode</button></li>
         <li class="right"><a href="/account">Account</a></li>
         {% if 'user' in session %}
             <li class="right"><a href="/pantry">Pantry</a></li>
@@ -14,28 +14,28 @@
     function darkMode() {
         var element = document.body;
         element.classList.toggle("dark-mode");
-        
-        var darkModeBtn = document.getElementById("toggleDarkMode");
+
+        var modeB = document.getElementById("changeMode");
 
         // Save the state to local storage
         if(document.body.classList.contains("dark-mode")) {
             localStorage.setItem("darkMode", "enabled");
-            darkModeBtn.textContent = "Light Mode"; // Change the button text to Light Mode
+            modeB.textContent = "Light Mode"; // Change the button text to Light Mode
         } else {
             localStorage.setItem("darkMode", null);
-            darkModeBtn.textContent = "Dark Mode"; // Change the button text to Dark Mode
+            modeB.textContent = "Dark Mode"; // Change the button text to Dark Mode
         }
     }
-    
+
     function checkDarkMode() {
         if (localStorage.getItem("darkMode") === "enabled") {
             document.body.classList.add("dark-mode");
-            document.getElementById("toggleDarkMode").textContent = "Light Mode";
+            document.getElementById("changeMode").textContent = "Light Mode";
         } else {
-            document.getElementById("toggleDarkMode").textContent = "Dark Mode";
+            document.getElementById("changeMode").textContent = "Dark Mode";
         }
     }
-    
+
     // Call checkDarkMode() when the page loads
     document.addEventListener("DOMContentLoaded", checkDarkMode);
 </script>

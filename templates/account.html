@@ -15,9 +15,10 @@
     {% if 'user' in session %}
     <!-- User is logged in -->
     <h1>Welcome to Your Account, {{ user['email'] }}</h1>
-    <form action="/logout" method="post">
+    <form action="/logout" method="post" class="center-form transparent-form ">
         <button type="submit">Logout</button>
     </form>
+
     {% else %}
     <!-- User is not logged in -->
     {% if error %}
@@ -25,7 +26,7 @@
         {{ error }}
     </div>
     {% endif %}
-      <form method="POST" action="/user">
+      <form method="POST" action="/user" class="brown-form">
           <h4>Login</h4>
           <input placeholder="Enter your email" type="email" id="email" name="email" required><br>
           <input placeholder="Enter your password" type="password" id="password" name="password" required><br><br>
