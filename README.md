@@ -18,7 +18,10 @@ Elasticsearch
 Installation
 Clone the repository:
 git clone https://github.com/abbybrink/PantryAlchemy.git
+
+
 cd PantryAlchemy
+
 Install dependencies:
 pip install -r requirements.txt
 
